@@ -11,13 +11,14 @@ export function Pagination({
   pageSize,
   total,
 }: PaginationProps) {
-  const maxPage = total ? Math.ceil(total / pageSize) : 0;
+  const totalPages = total ? Math.ceil(total / pageSize) : 0;
+  const pages = Array.from({ length: totalPages}, (_, i) => i + 1);
 
   return (
     <div>
       <p className={`text-sm mb-2`}> Page size: {pageSize}</p>
       <p className={`text-sm`}> Current page: {page}</p>
-      <p className={`text-sm`}> Total pages: {maxPage}</p>
+      <p className={`text-sm`}> Total pages: {totalPages}</p>
       {total > 0 && (
         <p className="text-sm">Total pages: {Math.ceil(total / pageSize)}</p>
       )}
@@ -31,10 +32,19 @@ export function Pagination({
 
       <button
         onClick={() => onPageChange(page + 1)}
-        disabled={page === maxPage}
+        disabled={page === totalPages}
       >
         Next
       </button>
+
+      {pages.map(p => (
+        <button
+          key={p}
+          onClick={() => onPageChange(p)}
+          disabled={p === page}
+          >{p}</button>
+          
+      ))}
     </div>
   );
 }
