@@ -14,20 +14,9 @@ export function SearchResults({
   error,
   total,
 }: SearchResultsProps) {
-  if (loading) {
-    // Show loading skeletons or spinner
-    return <p>Loading results...</p>;
-  }
-
-  if (error) {
-    // Show error message
-    return <p className={`text-red-500`}>Error: {error}</p>;
-  }
-
-  if (results.length === 0) {
-    // Show no results message
-    return <p>No results found.</p>;
-  }
+  if (loading) return <p>Loading results...</p>;
+  if (error) return <p className={`text-red-500`}>Error: {error}</p>;
+  if (results.length === 0) return <p>No results found.</p>;
 
   return (
     <div>
