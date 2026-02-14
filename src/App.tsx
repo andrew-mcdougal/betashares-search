@@ -1,14 +1,30 @@
 import { SearchBar } from "./components/SearchBar";
 import { useSearch } from "./hooks/useSearch";
 import { SearchResults } from "./components/SearchResults";
+import { Pagination } from "./components/Pagination";
 
 export default function App() {
   const { params, setParams, results, loading, error, total } = useSearch();
 
+  // handle onPageChange
+  const handlePageChange = (page: number) => {
+    setParams((prev) => ({
+      ...prev,
+      page,
+    }));
+  };
+
   return (
-    <div>
+    <div className={`text-center text-[2em]`}>
       <h1>Betashares Search</h1>
       <SearchBar params={params} setParams={setParams} />
+
+      <Pagination
+        page={params.page}
+        pageSize={params.pageSize}
+        total={total}
+        onPageChange={handlePageChange}
+      />
 
       <SearchResults
         results={results}

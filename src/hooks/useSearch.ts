@@ -18,20 +18,20 @@ export function useSearch(initialParams?: Partial<SearchParams>) {
   // State for search parameters
   // -----------------------------
   const [params, setParams] = useState<SearchParams>({
-    searchText: '',    // The text the user types
-    page: 1,           // Current page number for pagination
-    pageSize: 15,      // Number of results per page
-    ...initialParams,  // Allow passing custom defaults
+    searchText: "", // The text the user types
+    page: 1, // Current page number for pagination
+    pageSize: 15, // Number of results per page
+    ...initialParams, // Allow passing custom defaults
   });
 
   // -----------------------------
   // State for search results
   // -----------------------------
   const [state, setState] = useState<SearchState>({
-    results: [],       // Array of search results from API
-    total: 0,          // Total number of results
-    loading: false,    // True while waiting for API response
-    error: null,       // Error message if API call fails
+    results: [], // Array of search results from API
+    total: 0, // Total number of results
+    loading: false, // True while waiting for API response
+    error: null, // Error message if API call fails
   });
 
   // -----------------------------
@@ -60,14 +60,19 @@ export function useSearch(initialParams?: Partial<SearchParams>) {
       // Call the centralized API function
       const data = await fetchSearch(payload);
 
+
+      console.log('API response:', data);
+
       // Update state with results
       setState({
         results: data.results ?? [], // fallback empty array
-        total: data.total ?? 0,      // fallback total
+        total: data.count ?? 0, // fallback total
         loading: false,
         error: null,
       });
     } catch (err: any) {
+
+      
       // Handle errors gracefully
       setState((prev) => ({ ...prev, loading: false, error: err.message }));
     }
@@ -90,8 +95,8 @@ export function useSearch(initialParams?: Partial<SearchParams>) {
   // Return hook API to components
   // -----------------------------
   return {
-    params,          // Current search parameters
-    setParams,       // Setter to update parameters (searchText, page, filters)
+    params, // Current search parameters
+    setParams, // Setter to update parameters (searchText, page, filters)
     results: state.results,
     total: state.total,
     loading: state.loading,
