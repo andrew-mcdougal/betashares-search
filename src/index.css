@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Varela&display=swap");
 @import "./styles/reset.css";
 @import "./styles/variables.css";
 @import "./styles/base.css";
@@ -6,17 +7,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url("https://fonts.googleapis.com/css2?family=Varela&display=swap");
-
-
-
-
-
-
-
-
-
 
 /* Misc */
 @media (max-width: 640px) {

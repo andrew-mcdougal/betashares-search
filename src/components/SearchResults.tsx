@@ -17,7 +17,7 @@ export function SearchResults({
   error,
   total,
 }: SearchResultsProps) {
-  if (loading) return <Skeleton count={5} />;
+  if (loading) return <Skeleton count={15} />;
   if (error) return <p className={`text-red-500`}>Error: {error}</p>;
   if (results.length === 0) return <p>No results found.</p>;
 

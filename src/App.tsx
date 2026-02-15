@@ -1,4 +1,3 @@
-import { SearchBar } from "./components/SearchBar/SearchBar";
 import { useSearch } from "./hooks/useSearch";
 import { SearchResults } from "./components/SearchResults";
 import { Pagination } from "./components/Pagination/Pagination";

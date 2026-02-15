@@ -1,11 +1,12 @@
-export function Skeleton({ count = 5 }: { count?: number }) {
+export function Skeleton({ count = 15 }: { count?: number }) {
   return (
-    <div className="space-y-4">
+    <div className="skeleton-container p-[5vmin]">
       {Array.from({ length: count }).map((_, i) => (
-        <div
-          key={i}
-          className="h-20 bg-gray-200 rounded animate-pulse"
-        />
+        <div key={i} className="skeleton-card">
+          <div className="skeleton-line long" />
+          <div className="skeleton-line medium" />
+          <div className="skeleton-line short" />
+        </div>
       ))}
     </div>
   );
