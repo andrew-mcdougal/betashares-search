@@ -3,6 +3,7 @@ import type { SearchResult } from "../types/search";
 import { Skeleton } from "./../layouts/Skeleton";
 
 interface SearchResultsProps {
+  className?: string;
   results: SearchResult[]; // Array of results from hook
   loading: boolean; // True while awaiting API response
   error: string | null; // Error message if API call fails
@@ -10,6 +11,7 @@ interface SearchResultsProps {
 }
 
 export function SearchResults({
+  className,
   results,
   loading,
   error,
@@ -20,7 +22,7 @@ export function SearchResults({
   if (results.length === 0) return <p>No results found.</p>;
 
   return (
-    <div>
+    <div className={`${className}`}>
       <p className={`text-sm mb-2`}>{total} results found</p>
       {results.map((result) => (
         // Render each result using the reusable card component

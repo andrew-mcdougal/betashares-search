@@ -3,6 +3,7 @@ import type { SearchParams } from "../types/search";
 import type { Dispatch, SetStateAction } from "react";
 
 interface FiltersProps {
+  className?: string;
   // Current search parameters from hook
   params: SearchParams;
 
@@ -10,7 +11,7 @@ interface FiltersProps {
   setParams: Dispatch<SetStateAction<SearchParams>>;
 }
 
-export function Filters({ params, setParams }: FiltersProps) {
+export function Filters({ className,params, setParams }: FiltersProps) {
   const managementApproaches = ["Active", "Passive"];
 
   // handle the select change
@@ -26,7 +27,7 @@ export function Filters({ params, setParams }: FiltersProps) {
   };
 
   return (
-    <>
+    <div className={`${className}`}>
       <div>
         <select
           name="management-approach-filter"
@@ -65,6 +66,6 @@ export function Filters({ params, setParams }: FiltersProps) {
         />
         <p>Max fund size: {params.filters?.fund_size?.max || 5000}</p>
       </div>
-    </>
+    </div>
   );
 }

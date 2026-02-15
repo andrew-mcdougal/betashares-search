@@ -17,25 +17,19 @@ export default function App() {
   };
 
   return (
-    <div className={`
-      beteshares-container
-      w-screen h-screen
-      bg-[var(--color-surface)]
-      p-[2.5vmin_5vmin]
-    `}>
-      <Header />
-      <SearchBar params={params} setParams={setParams} />
-
-      <Filters params={params} setParams={setParams} />
-
+    <div className="beteshares-container bg-[var(--color-surface)]">
+      <Header className="header" />
+      <SearchBar className="search" params={params} setParams={setParams} />
+      <Filters className="filters" params={params} setParams={setParams} />
       <Pagination
+        className="pagination"
         page={params.page}
         pageSize={params.pageSize}
         total={total}
         onPageChange={handlePageChange}
       />
-
       <SearchResults
+        className="results"
         results={results}
         loading={loading}
         error={error}

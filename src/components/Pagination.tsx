@@ -1,4 +1,5 @@
 interface PaginationProps {
+  className?: string;
   page: number;
   pageSize: number;
   total: number;
@@ -6,6 +7,7 @@ interface PaginationProps {
 }
 
 export function Pagination({
+  className,
   onPageChange,
   page,
   pageSize,
@@ -38,7 +40,7 @@ export function Pagination({
   }
 
   return (
-    <div>
+    <div className={`${className}`}>
       <h2 className={`text-sm mb-2`}>{total} results found</h2>
       <p className={`text-sm mb-2`}> Page size: {pageSize}</p>
       <p className={`text-sm`}> Current page: {page}</p>
