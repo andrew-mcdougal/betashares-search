@@ -1,8 +1,8 @@
-import { SearchBar } from "./components/SearchBar";
+import { SearchBar } from "./components/SearchBar/SearchBar";
 import { useSearch } from "./hooks/useSearch";
 import { SearchResults } from "./components/SearchResults";
-import { Pagination } from "./components/Pagination";
-import { Filters } from "./components/Filters";
+import { Pagination } from "./components/Pagination/Pagination";
+import { Filters } from "./components/Filters/Filters";
 import { Header } from "./layouts/Header";
 import { Intro } from "./layouts/Intro";
 
@@ -21,11 +21,11 @@ export default function App() {
     <div className="beteshares-container bg-[var(--color-surface)]">
       <Header className="header" />
       <Intro total={total} className="intro" />
-      
+
       <Filters className="filters" params={params} setParams={setParams} />
-      
+
       <SearchResults
-        className="results"
+        className="results p-[5vmin]"
         results={results}
         loading={loading}
         error={error}
@@ -33,7 +33,6 @@ export default function App() {
       />
 
       <Pagination
-        className="pagination-wrapper"
         page={params.page}
         pageSize={params.pageSize}
         total={total}

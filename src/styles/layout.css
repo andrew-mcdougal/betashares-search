@@ -1,0 +1,20 @@
+.beteshares-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.filters {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background-color: var(--color-surface);
+  padding: 1rem 5vmin;
+}
+
+.pagination-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}

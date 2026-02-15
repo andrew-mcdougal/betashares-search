@@ -1,3 +1,5 @@
+import styles from "./Pagination.module.css";
+
 interface PaginationProps {
   className?: string;
   page: number;
@@ -7,7 +9,6 @@ interface PaginationProps {
 }
 
 export function Pagination({
-  className,
   onPageChange,
   page,
   pageSize,
@@ -40,7 +41,7 @@ export function Pagination({
   }
 
   return (
-    <div className={`${className}`}>
+    <div className={styles.wrapper}>
       {/* Pagination UI */}
       <div className={`pagination-ui flex gap-[1em] mb-[1em]`}>
         <button onClick={() => onPageChange(page - 1)} disabled={page === 1}>

@@ -20,7 +20,7 @@ export function useSearch(initialParams?: Partial<SearchParams>) {
   const [params, setParams] = useState<SearchParams>({
     searchText: "", // The text the user types
     page: 1, // Current page number for pagination
-    pageSize: 15, // Number of results per page
+    pageSize: 35, // Number of results per page
     ...initialParams, // Allow passing custom defaults
   });
 

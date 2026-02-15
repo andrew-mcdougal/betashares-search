@@ -1,4 +1,4 @@
-import { SearchResultItem } from "./SearchResultItem";
+import { SearchResultItem } from "./SearchResultItem/SearchResultItem";
 import type { SearchResult } from "../types/search";
 import { Skeleton } from "./../layouts/Skeleton";
 
@@ -29,7 +29,9 @@ export function SearchResults({
           <SearchResultItem key={result.symbol} result={result} />
         ))}
       </div>
-      <p className={`text-center w-full p-[1em_2em_10em_2em]`}>{total} results found</p>
+      <p className={`text-center w-full p-[1em_2em_10em_2em]`}>
+        {total} results found
+      </p>
     </div>
   );
 }

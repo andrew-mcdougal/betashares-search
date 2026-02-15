@@ -1,0 +1,73 @@
+.selectContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.select {
+  width: auto;
+  padding: 0.5rem 2.5rem 0.5rem 1rem;
+  border: 1px solid var(--color-primary);
+  border-radius: 0.5em;
+  background-color: var(--color-primary);
+  color: white;
+  appearance: none; /* remove native arrow */
+  -webkit-appearance: none; /* Safari/Chrome */
+  -moz-appearance: none; /* Firefox */
+  background-image: url("./../../assets/select-arrow.svg");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 30px auto;
+}
+
+.sliderContainer {
+  text-align: center;
+}
+.sliderContainer input[type="range"] {
+  -webkit-appearance: none; /* remove default styling for Chrome/Safari */
+  -moz-appearance: none; /* remove default styling for Firefox */
+  appearance: none;
+  width: 100%; /* full width */
+  height: 0.5rem; /* track height */
+  background: white; /* track background */
+  border-radius: 0.25rem;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Track for Firefox */
+.sliderContainer input[type="range"]::-moz-range-track {
+  background: white;
+  height: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+/* Track for Chrome/Safari */
+.sliderContainer input[type="range"]::-webkit-slider-runnable-track {
+  background: white;
+  height: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+/* Thumb styling */
+.sliderContainer input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  background: var(--color-primary);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  margin-top: -0.25rem; /* center thumb on track */
+}
+
+.sliderContainer input[type="range"]::-moz-range-thumb {
+  width: 1rem;
+  height: 1rem;
+  background: var(--color-primary);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}

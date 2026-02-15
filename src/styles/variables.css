@@ -1,0 +1,63 @@
+:root {
+  /* === LIGHT THEME === */
+
+  --color-primary: #fa5c2a; /* Orange */
+  --color-secondary: #090909; /* Cod Gray */
+
+  --color-bg: #ffffff;
+  --color-surface: rgb(240, 237, 235);
+
+  --color-text: #090909; /* Cod Gray */
+  --color-text-muted: #555555;
+}
+
+/* Dark theme override */
+.dark {
+  /* === DARK THEME === */
+
+  --color-primary: #fa5c2a;
+  --color-secondary: #090909;
+
+  --color-bg: #090909; /* Cod Gray as background */
+  --color-surface: #121212;
+
+  --color-text: #ffffff;
+  --color-text-muted: #aaaaaa;
+}
+
+.filter-field {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 5em;
+  background-color: white;
+  font-size: 1.2rem;
+  color: var(--color-text-primary); /* optional for text */
+}
+
+.filter-field::placeholder {
+  color: var(--color-placeholder);
+}
+
+.filter-field:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-primary);
+}
+
+.dashboard-filters-container {
+  display: grid;
+  grid-auto-flow: row; /* default, allows wrapping */
+  grid-auto-columns: minmax(
+    200px,
+    1fr
+  ); /* each item at least 200px, expand if more space */
+  grid-auto-rows: auto; /* rows grow as needed */
+  gap: 1rem; /* space between items */
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .dashboard-filters-container {
+    grid-auto-flow: column; /* horizontal flow on larger screens */
+  }
+}

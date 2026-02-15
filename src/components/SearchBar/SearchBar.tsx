@@ -1,17 +1,15 @@
 import type { ChangeEvent } from "react";
-import type { SearchParams } from "../types/search";
+import type { SearchParams } from "../../types/search";
 import type { Dispatch, SetStateAction } from "react";
+import styles from "./SearchBar.module.css";
 
 interface SearchBarProps {
-  className?: string;
-  // Current search parameters from hook
   params: SearchParams;
-
   // Setter to update search params
   setParams: Dispatch<SetStateAction<SearchParams>>;
 }
 
-export function SearchBar({ className, params, setParams }: SearchBarProps) {
+export function SearchBar({ params, setParams }: SearchBarProps) {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     // Update the searchText in params and reset page to 1
     setParams((prev) => ({
@@ -22,17 +20,15 @@ export function SearchBar({ className, params, setParams }: SearchBarProps) {
   };
 
   return (
-    <div className={`${className}`}>
       <input
         type="text"
         placeholder="Search ETFs..."
         value={params.searchText}
         onChange={handleChange}
         className={`
-          dashboard-search
+          ${styles.searchbar}
           filter-field
         `}
       />
-    </div>
   );
 }

@@ -1,7 +1,8 @@
 import type { ChangeEvent } from "react";
-import type { SearchParams } from "../types/search";
+import type { SearchParams } from "../../types/search";
 import type { Dispatch, SetStateAction } from "react";
-import { SearchBar } from "./SearchBar";
+import { SearchBar } from "../SearchBar/SearchBar";
+import style from "./Filters.module.css";
 
 interface FiltersProps {
   className?: string;
@@ -29,15 +30,12 @@ export function Filters({ className, params, setParams }: FiltersProps) {
 
   return (
     <div className={`sticky-filters ${className}`}>
-      <SearchBar className="search py-[2rem]" params={params} setParams={setParams} />
+      <SearchBar params={params} setParams={setParams} />
       <div className={`dashboard-filters-container`}>
-        <div className="dashboard-select-container">
+        <div className={style.selectContainer}>
           <label htmlFor="management-approach-filter">Management Type:</label>
           <select
-            className={`
-            dashboard-select
-            filter-field
-          `}
+            className={style.select}
             id="management-approach-filter"
             name="management-approach-filter"
             value={params.filters?.management_approach || ""}
@@ -52,7 +50,7 @@ export function Filters({ className, params, setParams }: FiltersProps) {
           </select>
         </div>
 
-        <div className="dashboard-slider-container">
+        <div className={style.sliderContainer}>
           <label htmlFor="fund-size-slider">
             Max fund size: ${params.filters?.fund_size?.max || 5000} (AUD)
           </label>

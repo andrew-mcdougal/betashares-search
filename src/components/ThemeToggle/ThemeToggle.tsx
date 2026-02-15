@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styles from "./ThemeToggle.module.css";
 
 export function ThemeToggle() {
   const [isDark, setIsDark] = useState(false);
@@ -20,12 +21,13 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="
+      className={`
+        ${styles.button}
         px-4 py-2 rounded
         bg-[var(--color-primary)]
         text-white
         transition
-      "
+      `}
     >
       {isDark ? "Light Mode" : "Dark Mode"}
     </button>
