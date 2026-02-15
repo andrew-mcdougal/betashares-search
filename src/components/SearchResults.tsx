@@ -1,5 +1,6 @@
 import { SearchResultItem } from "./SearchResultItem";
 import type { SearchResult } from "../types/search";
+import { Skeleton } from "./../layouts/Skeleton";
 
 interface SearchResultsProps {
   results: SearchResult[]; // Array of results from hook
@@ -14,7 +15,7 @@ export function SearchResults({
   error,
   total,
 }: SearchResultsProps) {
-  if (loading) return <p>Loading results...</p>;
+  if (loading) return <Skeleton count={5} />;
   if (error) return <p className={`text-red-500`}>Error: {error}</p>;
   if (results.length === 0) return <p>No results found.</p>;
 

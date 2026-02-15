@@ -60,7 +60,11 @@ export function useSearch(initialParams?: Partial<SearchParams>) {
       // Call the centralized API function
       const data = await fetchSearch(payload);
 
+      // log a result to see what data looks like
       console.log("API response:", JSON.stringify(data.results[0], null, 2));
+
+      // Artificial delay
+      await new Promise(resolve => setTimeout(resolve, 5000)); // 500ms delay
 
       // Update state with results
       setState({
