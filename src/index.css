@@ -19,7 +19,8 @@ body {
 }
 
 /* Remove list styles */
-ul, ol {
+ul,
+ol {
   list-style: none;
   padding: 0;
 }
@@ -32,26 +33,33 @@ button {
 }
 
 /* Images */
-img, picture, video, canvas, svg {
+img,
+picture,
+video,
+canvas,
+svg {
   display: block;
   max-width: 100%;
 }
 
 /* Forms */
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
   font: inherit;
 }
 
 :root {
   /* === LIGHT THEME === */
 
-  --color-primary: #FA5C2A;     /* Orange */
-  --color-secondary: #090909;   /* Cod Gray */
+  --color-primary: #fa5c2a; /* Orange */
+  --color-secondary: #090909; /* Cod Gray */
 
-  --color-bg: #FFFFFF;
+  --color-bg: #ffffff;
   --color-surface: rgb(240, 237, 235);
 
-  --color-text: #090909;        /* Cod Gray */
+  --color-text: #090909; /* Cod Gray */
   --color-text-muted: #555555;
 }
 
@@ -59,58 +67,190 @@ input, button, textarea, select {
 .dark {
   /* === DARK THEME === */
 
-  --color-primary: #FA5C2A;     
+  --color-primary: #fa5c2a;
   --color-secondary: #090909;
 
-  --color-bg: #090909;          /* Cod Gray as background */
+  --color-bg: #090909; /* Cod Gray as background */
   --color-surface: #121212;
 
-  --color-text: #FFFFFF;
-  --color-text-muted: #AAAAAA;
+  --color-text: #ffffff;
+  --color-text-muted: #aaaaaa;
 }
-
-
-
-
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Varela&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Varela&display=swap");
 
 /* Quasi-config: override fonts */
 @layer base {
   body {
-    font-family: 'Varela', 'ui-sans-serif', system-ui;
+    font-family: "Varela", "ui-sans-serif", system-ui;
   }
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Varela', 'ui-sans-serif', system-ui;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Varela", "ui-sans-serif", system-ui;
   }
 }
-
 
 .beteshares-container {
   display: grid;
   grid-template-columns: 5vmin 1fr 5vmin;
-  grid-template-rows: 2vmin auto auto auto 1fr auto 5vmin;
+  grid-template-rows: auto auto auto auto auto 5vmin;
   grid-template-areas:
-    ".. .. .."
-    ".. 👑 .."
-    ".. 🔍 .."
-    ".. ❓ .."
-    ".. 📊 .."
-    ".. 🔢 .."
-    ".. .. ..";
-    
-  gap: 1rem; /* Tailwind gap can also be used */
+    "👑  👑  👑"
+    "..  📣  .."
+    "..  🔍  .."
+    "..  ❓  .."
+    "..  📊  .."
+    "..  🔢  .."
+    "..  ..  ..";
   width: 100vw;
   height: 100vh;
 }
 
 /* Assign areas to children using emojis */
-.header { grid-area: 👑; }
-.search { grid-area: 🔍; }
-.filters { grid-area: ❓; }
-.pagination { grid-area: 📊; }
-.results { grid-area: 🔢; }
+.header {
+  grid-area: 👑;
+}
+.intro {
+  grid-area: 📣;
+}
+.search {
+  grid-area: 🔍;
+}
+.filters {
+  grid-area: ❓;
+}
+.pagination {
+  grid-area: 📊;
+}
+.results {
+  grid-area: 🔢;
+}
+
+
+/* Filter styling */
+
+.sticky-filters{
+  position: sticky;      /* stick it */
+  top: 0;                /* distance from viewport top */
+  background-color: var(--color-surface); /* keep background visible */
+  z-index: 20;           /* above results */
+  padding: 1rem 0;       /* optional spacing */
+}
+
+
+.filter-field {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 5em;
+  background-color: white;
+  font-size: 1.2rem;
+  color: var(--color-text-primary); /* optional for text */
+}
+
+.filter-field::placeholder {
+  color: var(--color-placeholder);
+}
+
+.filter-field:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-primary);
+}
+
+
+.dashboard-select-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.filter-field.dashboard-select {
+  width: auto;
+  padding: 0.5rem 2.5rem 0.5rem 1rem;
+  border: 1px solid var(--color-primary);
+  border-radius: 0.5em;
+  background-color: var(--color-primary);
+  color: white;
+  appearance: none;           /* remove native arrow */
+  -webkit-appearance: none;   /* Safari/Chrome */
+  -moz-appearance: none;      /* Firefox */
+  background-image: url("./assets/select-arrow.svg");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 30px auto;
+}
+
+.dashboard-filters-container {
+  display: grid;
+  grid-auto-flow: row;          /* default, allows wrapping */
+  grid-auto-columns: minmax(200px, 1fr); /* each item at least 200px, expand if more space */
+  grid-auto-rows: auto;         /* rows grow as needed */
+  gap: 1rem;                    /* space between items */
+  align-items: center;
+
+}
+
+@media (min-width: 640px) {
+  .dashboard-filters-container {
+    grid-auto-flow: column;     /* horizontal flow on larger screens */
+  }
+}
+
+.dashboard-slider-container { text-align: center;}
+.dashboard-slider-container input[type="range"] {
+  -webkit-appearance: none; /* remove default styling for Chrome/Safari */
+  -moz-appearance: none;    /* remove default styling for Firefox */
+  appearance: none;
+  width: 100%;              /* full width */
+  height: 0.5rem;           /* track height */
+  background: white; /* track background */
+  border-radius: 0.25rem;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Track for Firefox */
+.dashboard-slider-container input[type="range"]::-moz-range-track {
+  background: white;
+  height: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+/* Track for Chrome/Safari */
+.dashboard-slider-container input[type="range"]::-webkit-slider-runnable-track {
+  background: white;
+  height: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+/* Thumb styling */
+.dashboard-slider-container input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  background: var(--color-primary);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  margin-top: -0.25rem; /* center thumb on track */
+}
+
+.dashboard-slider-container input[type="range"]::-moz-range-thumb {
+  width: 1rem;
+  height: 1rem;
+  background: var(--color-primary);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+

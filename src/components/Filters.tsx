@@ -1,6 +1,7 @@
 import type { ChangeEvent } from "react";
 import type { SearchParams } from "../types/search";
 import type { Dispatch, SetStateAction } from "react";
+import { SearchBar } from "./SearchBar";
 
 interface FiltersProps {
   className?: string;
@@ -11,7 +12,7 @@ interface FiltersProps {
   setParams: Dispatch<SetStateAction<SearchParams>>;
 }
 
-export function Filters({ className,params, setParams }: FiltersProps) {
+export function Filters({ className, params, setParams }: FiltersProps) {
   const managementApproaches = ["Active", "Passive"];
 
   // handle the select change
@@ -27,44 +28,54 @@ export function Filters({ className,params, setParams }: FiltersProps) {
   };
 
   return (
-    <div className={`${className}`}>
-      <div>
-        <select
-          name="management-approach-filter"
-          value={params.filters?.management_approach || ""}
-          onChange={handleSelectChange}
-        >
-          <option value="">All</option>
-          {managementApproaches.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-      </div>
+    <div className={`sticky-filters ${className}`}>
+      <SearchBar className="search py-[2rem]" params={params} setParams={setParams} />
+      <div className={`dashboard-filters-container`}>
+        <div className="dashboard-select-container">
+          <label htmlFor="management-approach-filter">Management Type:</label>
+          <select
+            className={`
+            dashboard-select
+            filter-field
+          `}
+            id="management-approach-filter"
+            name="management-approach-filter"
+            value={params.filters?.management_approach || ""}
+            onChange={handleSelectChange}
+          >
+            <option value="">All</option>
+            {managementApproaches.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </div>
 
-      <div>
-        <label htmlFor="fund-size-slider">Fund size (AUD)</label>
-        <input
-          type="range"
-          id="fund-size-slider"
-          min={0}
-          max={10000}
-          step={100}
-          value={params.filters?.fund_size?.max || 5000}
-          onChange={(e) => {
-            const value = e.target.value;
-            setParams((prev) => ({
-              ...prev,
-              page: 1,
-              filters: {
-                ...prev.filters,
-                fund_size: { min: "0", max: value },
-              },
-            }));
-          }}
-        />
-        <p>Max fund size: {params.filters?.fund_size?.max || 5000}</p>
+        <div className="dashboard-slider-container">
+          <label htmlFor="fund-size-slider">
+            Max fund size: ${params.filters?.fund_size?.max || 5000} (AUD)
+          </label>
+          <input
+            type="range"
+            id="fund-size-slider"
+            min={0}
+            max={10000}
+            step={100}
+            value={params.filters?.fund_size?.max || 5000}
+            onChange={(e) => {
+              const value = e.target.value;
+              setParams((prev) => ({
+                ...prev,
+                page: 1,
+                filters: {
+                  ...prev.filters,
+                  fund_size: { min: "0", max: value },
+                },
+              }));
+            }}
+          />
+        </div>
       </div>
     </div>
   );

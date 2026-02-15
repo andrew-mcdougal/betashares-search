@@ -7,7 +7,7 @@ interface HeaderProps {
 
 export function Header({ className }: HeaderProps) {
   return (
-    <div className={`bg-white flex items-center justify-between p-4 ${className}`}>
+    <div className={`bg-[white] flex items-center justify-between p-[1vmin_5vmin] ${className}`}>
       <Logo />
       <ThemeToggle />
     </div>

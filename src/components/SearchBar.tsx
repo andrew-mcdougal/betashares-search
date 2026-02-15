@@ -25,10 +25,13 @@ export function SearchBar({ className, params, setParams }: SearchBarProps) {
     <div className={`${className}`}>
       <input
         type="text"
-        placeholder="Search Betashares..."
+        placeholder="Search ETFs..."
         value={params.searchText}
         onChange={handleChange}
-        className={`border rounded p-2 w-full`}
+        className={`
+          dashboard-search
+          filter-field
+        `}
       />
     </div>
   );
