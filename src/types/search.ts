@@ -21,6 +21,10 @@ export interface SearchParams {
   orderBy?: string;
   filters?: {
     management_approach?: string[];
+    fund_size?: {
+      min?: string;
+      max?: string;
+    };
     // future filters can be added here
   }
 }

@@ -39,6 +39,7 @@ export function Pagination({
 
   return (
     <div>
+      <h2 className={`text-sm mb-2`}>{total} results found</h2>
       <p className={`text-sm mb-2`}> Page size: {pageSize}</p>
       <p className={`text-sm`}> Current page: {page}</p>
       <p className={`text-sm`}> Total pages: {totalPages}</p>
@@ -61,7 +62,11 @@ export function Pagination({
         p === "..." ? (
           <span key={`ellipsis-${index}`}>...</span>
         ) : (
-          <button key={p} onClick={() => onPageChange(p as number)} disabled={p === page}>
+          <button
+            key={p}
+            onClick={() => onPageChange(p as number)}
+            disabled={p === page}
+          >
             {p}
           </button>
         ),

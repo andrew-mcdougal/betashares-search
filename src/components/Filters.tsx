@@ -11,11 +11,10 @@ interface FiltersProps {
 }
 
 export function Filters({ params, setParams }: FiltersProps) {
-
   const managementApproaches = ["Active", "Passive"];
 
   // handle the select change
-  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setParams((prev) => ({
       ...prev,
       filters: {
@@ -27,17 +26,45 @@ export function Filters({ params, setParams }: FiltersProps) {
   };
 
   return (
+    <>
+      <div>
+        <select
+          name="management-approach-filter"
+          value={params.filters?.management_approach || ""}
+          onChange={handleSelectChange}
+        >
+          <option value="">All</option>
+          {managementApproaches.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </div>
 
-      <select
-        name="management-approach-filter"
-        value={params.filters?.management_approach || ""}
-        onChange={handleChange}>
-        <option value="">All</option>
-        {managementApproaches.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
+      <div>
+        <label htmlFor="fund-size-slider">Fund size (AUD)</label>
+        <input
+          type="range"
+          id="fund-size-slider"
+          min={0}
+          max={10000}
+          step={100}
+          value={params.filters?.fund_size?.max || 5000}
+          onChange={(e) => {
+            const value = e.target.value;
+            setParams((prev) => ({
+              ...prev,
+              page: 1,
+              filters: {
+                ...prev.filters,
+                fund_size: { min: "0", max: value },
+              },
+            }));
+          }}
+        />
+        <p>Max fund size: {params.filters?.fund_size?.max || 5000}</p>
+      </div>
+    </>
   );
 }
