@@ -254,3 +254,114 @@ select {
   cursor: pointer;
 }
 
+
+
+/* Results */
+.dashboard-card {
+  background-color: white;
+  border-radius: 1rem;       /* rounded edges */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* subtle shadow */
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+.dashboard-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.dashboard-card p {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+.dashboard-card .fund-size {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.dashboard-card .management {
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+}
+
+
+/* Pagination */
+.pagination-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--color-primary);
+  z-index: 30;
+  padding: 1rem;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.pagination-wrapper button {
+  background-color: #e67e22; /* slightly lighter orange */
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  font-size: 0.9em;
+}
+
+.pagination-wrapper button:hover {
+  background-color: #f39c12; /* brighter on hover */
+  transform: translateY(-1px);
+}
+
+.pagination-wrapper button:disabled {
+  background-color: #b03e00; /* darker disabled state */
+  cursor: not-allowed;
+}
+
+.pagination-wrapper span {
+  color: #fff;
+  font-size: .75rem;
+  margin: 0 0.25rem;
+}
+
+.pagination-info {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem; /* spacing between items */
+  flex-wrap: wrap;
+}
+
+/* Switch to horizontal row on larger screens */
+@media (min-width: 640px) { /* small screens and up */
+  .pagination-info {
+    flex-direction: row;
+    justify-content: center; /* center horizontally */
+  }
+
+  .pagination-wrapper button {
+    padding: 0.5rem 1rem;
+  }
+}
+
+
+/* Misc */
+@media (max-width: 640px) {
+  .mobile-remove {
+    display: none;
+  }
+}

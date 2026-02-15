@@ -41,38 +41,43 @@ export function Pagination({
 
   return (
     <div className={`${className}`}>
-      <h2 className={`text-sm mb-2`}>{total} results found</h2>
-      <p className={`text-sm mb-2`}> Page size: {pageSize}</p>
-      <p className={`text-sm`}> Current page: {page}</p>
-      <p className={`text-sm`}> Total pages: {totalPages}</p>
-      {total > 0 && (
-        <p className="text-sm">Total pages: {Math.ceil(total / pageSize)}</p>
-      )}
+      {/* Pagination UI */}
+      <div className={`pagination-ui flex gap-[1em] mb-[1em]`}>
+        <button onClick={() => onPageChange(page - 1)} disabled={page === 1}>
+          Previous
+        </button>
 
-      <button onClick={() => onPageChange(page - 1)} disabled={page === 1}>
-        Previous
-      </button>
+        <button
+          onClick={() => onPageChange(page + 1)}
+          disabled={page === totalPages}
+        >
+          Next
+        </button>
 
-      <button
-        onClick={() => onPageChange(page + 1)}
-        disabled={page === totalPages}
-      >
-        Next
-      </button>
+        {pages.map((p, index) =>
+          p === "..." ? (
+            <span key={`ellipsis-${index}`}>...</span>
+          ) : (
+            <button
+              key={p}
+              onClick={() => onPageChange(p as number)}
+              disabled={p === page}
+            >
+              {p}
+            </button>
+          ),
+        )}
+      </div>
 
-      {pages.map((p, index) =>
-        p === "..." ? (
-          <span key={`ellipsis-${index}`}>...</span>
-        ) : (
-          <button
-            key={p}
-            onClick={() => onPageChange(p as number)}
-            disabled={p === page}
-          >
-            {p}
-          </button>
-        ),
-      )}
+      {/* Pagination info */}
+      <div className={`pagination-info flex gap-[1em] text-[0.8rem]`}>
+        <p className={`mobile-remove`}>{total} results found</p>
+        <p className={`mobile-remove`}> Results per page: {pageSize}</p>
+        <p className={``}> Current page: {page}</p>
+        {total > 0 && (
+          <p>Total pages: {Math.ceil(total / pageSize)}</p>
+        )}
+      </div>
     </div>
   );
 }

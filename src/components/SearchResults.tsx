@@ -23,11 +23,13 @@ export function SearchResults({
 
   return (
     <div className={`${className}`}>
-      <p className={`text-sm mb-2`}>{total} results found</p>
-      {results.map((result) => (
-        // Render each result using the reusable card component
-        <SearchResultItem key={result.symbol} result={result} />
-      ))}
+      <div className="dashboard-results-grid grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-[1rem]">
+        {results.map((result) => (
+          // Render each result using the reusable card component
+          <SearchResultItem key={result.symbol} result={result} />
+        ))}
+      </div>
+      <p className={`text-center w-full p-[1em_2em_10em_2em]`}>{total} results found</p>
     </div>
   );
 }

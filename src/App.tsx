@@ -23,19 +23,21 @@ export default function App() {
       <Intro total={total} className="intro" />
       
       <Filters className="filters" params={params} setParams={setParams} />
-      <Pagination
-        className="pagination"
-        page={params.page}
-        pageSize={params.pageSize}
-        total={total}
-        onPageChange={handlePageChange}
-      />
+      
       <SearchResults
         className="results"
         results={results}
         loading={loading}
         error={error}
         total={total}
+      />
+
+      <Pagination
+        className="pagination-wrapper"
+        page={params.page}
+        pageSize={params.pageSize}
+        total={total}
+        onPageChange={handlePageChange}
       />
     </div>
   );

@@ -15,7 +15,7 @@ export function SearchResultItem({ result }: SearchResultsItemProps) {
   }).format(sizeNumber);
 
   return (
-    <div className={`border rounded p-4 mb-2 hover:shadow-md transition`}>
+    <div className={`dashboard-card`}>
       {/* Display the main info */}
       <h3 className={`font-semibold`}>{result.display_name}</h3>
       <p className={`text-sm text-gray-600`}>Fund Size: {formattedFundSize}</p>
