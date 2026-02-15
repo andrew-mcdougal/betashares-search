@@ -6,6 +6,7 @@ export interface SearchResult {
   five_year_return?: number;
   fund_size?: number;
   management_fee?: number;
+  management_approach?: string;
 }
 
 export interface SearchResponse {
@@ -18,7 +19,10 @@ export interface SearchParams {
   page: number;
   pageSize: number;
   orderBy?: string;
-  filters?: Record<string, unknown>;
+  filters?: {
+    management_approach?: string[];
+    // future filters can be added here
+  }
 }
 
 export interface SearchState {

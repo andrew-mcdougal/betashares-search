@@ -10,6 +10,7 @@ export function SearchResultItem({ result }: SearchResultsItemProps) {
       {/* Display the main info */}
       <h3 className={`font-semibold`}>{result.display_name}</h3>
       <p className={`text-sm text-gray-600`}>{result.symbol}</p>
+      <p className={`text-sm text-gray-600`}>Management approach: {result.management_approach}</p>
     </div>
   );
 }

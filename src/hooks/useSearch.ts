@@ -60,8 +60,7 @@ export function useSearch(initialParams?: Partial<SearchParams>) {
       // Call the centralized API function
       const data = await fetchSearch(payload);
 
-
-      console.log('API response:', data);
+      console.log("API response:", JSON.stringify(data.results[0], null, 2));
 
       // Update state with results
       setState({
@@ -71,8 +70,6 @@ export function useSearch(initialParams?: Partial<SearchParams>) {
         error: null,
       });
     } catch (err: any) {
-
-      
       // Handle errors gracefully
       setState((prev) => ({ ...prev, loading: false, error: err.message }));
     }

@@ -2,6 +2,7 @@ import { SearchBar } from "./components/SearchBar";
 import { useSearch } from "./hooks/useSearch";
 import { SearchResults } from "./components/SearchResults";
 import { Pagination } from "./components/Pagination";
+import { Filters } from "./components/Filters";
 
 export default function App() {
   const { params, setParams, results, loading, error, total } = useSearch();
@@ -18,6 +19,8 @@ export default function App() {
     <div className={`text-center text-[2em]`}>
       <h1>Betashares Search</h1>
       <SearchBar params={params} setParams={setParams} />
+
+      <Filters params={params} setParams={setParams} />
 
       <Pagination
         page={params.page}
