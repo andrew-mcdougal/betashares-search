@@ -64,7 +64,7 @@ export function useSearch(initialParams?: Partial<SearchParams>) {
       console.log("API response:", JSON.stringify(data.results[0], null, 2));
 
       // Artificial delay
-      await new Promise(resolve => setTimeout(resolve, 5000)); // 500ms delay
+      await new Promise(resolve => setTimeout(resolve, 500)); // 500ms delay
 
       // Update state with results
       setState({

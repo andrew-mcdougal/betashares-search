@@ -17,9 +17,13 @@ export default function App() {
   };
 
   return (
-    <div className={`text-center text-[2em]`}>
+    <div className={`
+      beteshares-container
+      w-screen h-screen
+      bg-[var(--color-surface)]
+      p-[2.5vmin_5vmin]
+    `}>
       <Header />
-      <h1>Betashares Search</h1>
       <SearchBar params={params} setParams={setParams} />
 
       <Filters params={params} setParams={setParams} />
