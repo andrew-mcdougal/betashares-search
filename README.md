@@ -1,73 +1,71 @@
-# React + TypeScript + Vite
+# Betashares ETF Search Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React frontend for exploring Betashares ETFs with **predictive search, filters, pagination, and responsive results**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- **Predictive Search** – Auto-suggestions as you type, click to select a suggestion  
+- **Filters** – Management Type, Max Fund Size, Management Fee, Fund Category  
+- **Advanced Filters** – Toggleable to save space  
+- **Results Grid** – Responsive cards with fund info  
+- **Pagination** – Fixed footer, updates results when page changes  
+- **Loading States** – Skeleton UI while fetching results  
+- **Responsive Layout** – Stacks nicely on mobile, two-column desktop layout  
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 1. Clone the repository
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+gh repo clone andrew-mcdougal/betashares-search
+cd betashares-search
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+npm install
+```
+
+### 3. Start the development server:
+
+```
+npm run dev
+```
+
+The app will be available at http://localhost:3000
+
+## Usage
+
+- Use the search bar to type ETF names or symbols
+- Refine results using filters
+- Toggle advanced filters for more options
+- Navigate results using the fixed footer pagination
+- Tech Stack
+- React + TypeScript
+- CSS Modules for styling
+- Fetch API for backend integration
+
+## API
+
+Backend search API endpoint:
+```
+POST https://search.betashares.services/search
+```
+
+Payload supports:
+
+- search_text – free text search
+- filters – fund_size, management_fee, management_approach, fund_category
+- order_by – sort results
+- from and size – pagination
+
+## Notes
+
+- Only valid filters are sent to the API
+- Skeleton components indicate loading states
+- Cards show key fund information (name, fund size, management approach, etc.)
