@@ -20,6 +20,16 @@
   font-size: 1rem;
 }
 
+.symbol {
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 900;
+  padding: 0.25rem 1rem;
+  border-radius: 1.5rem;
+  width: fit-content;
+}
+
 .meta {
   font-size: 0.875rem;
   font-weight: 700;

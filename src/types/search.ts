@@ -7,6 +7,9 @@ export interface SearchResult {
   fund_size?: number;
   management_fee?: number;
   management_approach?: string;
+  investment_suitability?: string[];
+  categories?: string[];
+  dividend_frequency?: string[];
 }
 
 export interface SearchResponse {
@@ -25,7 +28,13 @@ export interface SearchParams {
       min?: string;
       max?: string;
     };
-    // future filters can be added here
+    management_fee?: {
+      min?: string;
+      max?: string;
+    };
+    investment_suitability?: string[];
+    categories?: string[];
+    dividend_frequency?: string[];
   }
 }
 

@@ -1,8 +1,8 @@
 .selectContainer {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: start;
   gap: 0.5rem;
-  font-size: 1.2rem;
 }
 
 .select {
@@ -22,7 +22,10 @@
 }
 
 .sliderContainer {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.5rem;
 }
 .sliderContainer input[type="range"] {
   -webkit-appearance: none; /* remove default styling for Chrome/Safari */
@@ -70,4 +73,28 @@
   border-radius: 50%;
   border: none;
   cursor: pointer;
+}
+
+.toggleButton {
+  font-size: 1em;
+  display: block;
+  margin: 1rem 0 0; /* centers horizontally */
+  padding: 0.25rem 0.7rem;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  text-align: center;
+}
+
+.toggleButton:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.toggleButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-primary)50; /* semi-transparent focus ring */
 }
