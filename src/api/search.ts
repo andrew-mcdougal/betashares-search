@@ -1,4 +1,4 @@
-const BASE_URL = 'https://search.betashares.services/search';
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export async function fetchSearch(payload: Record<string, unknown>) {
   const response = await fetch(BASE_URL, {
