@@ -21,7 +21,7 @@ A modern React frontend for exploring Betashares ETFs with **predictive search, 
 ### 1. Clone the repository
 
 ```
-gh repo clone andrew-mcdougal/betashares-search
+git clone https://github.com/andrew-mcdougal/betashares-search.git
 cd betashares-search
 ```
 
