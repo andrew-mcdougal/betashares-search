@@ -16,14 +16,15 @@
 .dark {
   /* === DARK THEME === */
 
-  --color-primary: #fa5c2a;
-  --color-secondary: #090909;
+  --color-primary: #fa5c2a; /* Orange */
+  --color-secondary: #090909; /* Cod Gray */
+  --color-primary-light: #DC7B5B;
 
-  --color-bg: #090909; /* Cod Gray as background */
-  --color-surface: #121212;
+  --color-bg: #ffffff;
+  --color-surface: rgb(240, 237, 235);
 
-  --color-text: #ffffff;
-  --color-text-muted: #aaaaaa;
+  --color-text: #090909; /* Cod Gray */
+  --color-text-muted: #555555;
 }
 
 .filter-field {
