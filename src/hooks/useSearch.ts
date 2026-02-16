@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import type { SearchParams, SearchState, SearchResult } from "../types/search";
+import type { SearchParams, SearchState } from "../types/search";
 import { fetchSearch } from "../api/search";
 import { useDebounce } from "./useDebounce";
 

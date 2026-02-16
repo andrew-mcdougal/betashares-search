@@ -1,5 +1,5 @@
 import { Logo } from "../assets/Logo";
-import { ThemeToggle } from "../components/ThemeToggle/ThemeToggle";
+//import { ThemeToggle } from "../components/ThemeToggle/ThemeToggle";
 
 interface HeaderProps {
   className?: string;

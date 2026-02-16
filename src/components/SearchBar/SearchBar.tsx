@@ -12,7 +12,7 @@ export function SearchBar({ params, setParams }: SearchBarProps) {
   // Local UI state for predictive suggestions.
   const [suggestions, setSuggestions] = useState<any[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
 
   // Used to detect clicks outside the search component
   const containerRef = useRef<HTMLDivElement>(null);
