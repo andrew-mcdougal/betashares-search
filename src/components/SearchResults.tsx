@@ -18,8 +18,22 @@ export function SearchResults({
   total,
 }: SearchResultsProps) {
   if (loading) return <Skeleton count={15} />;
-  if (error) return <p className={`text-red-500`}>Error: {error}</p>;
-  if (results.length === 0) return <p>No results found.</p>;
+  if (error) {
+  return (
+    <div className="flex flex-col items-center justify-center gap-4 p-[5vh]">
+      <p className="font-medium">Something went wrong</p>
+      <p className="text-sm mt-1">{error}</p>
+    </div>
+  );
+}
+
+if (results.length === 0) {
+  return (
+    <div className="flex flex-col items-center justify-center gap-4 p-[5vh]">
+      <p className="text-gray-600">No funds match your filters. Please change your filters and try again.</p>
+    </div>
+  );
+}
 
   return (
     <div className={`${className}`}>
