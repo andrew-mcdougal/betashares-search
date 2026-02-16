@@ -19,13 +19,13 @@ export function SearchResultItem({ result }: SearchResultsItemProps) {
       {/* Display the main info */}
       <p className={styles.symbol}>{result.symbol}</p>
       <h3 className={styles.title}>{result.display_name}</h3>
-      <p className={styles.meta}>Fund Size: {formattedFundSize}</p>
-      <p className={styles.meta}>Fee: {result.management_fee}%</p>
+      <p className={styles.meta}><strong>Fund Size:</strong> {formattedFundSize}</p>
+      <p className={styles.meta}><strong>Fee:</strong> {result.management_fee}%</p>
       <p className={styles.meta}>
-        Management approach: {result.management_approach}
+        <strong>Management approach:</strong> {result.management_approach}
       </p>
-      <p>Investment suitability: {result.investment_suitability}</p>
-      <p>Dividend frequency: {result.dividend_frequency}</p>
+      <p className={styles.meta}><strong>Suitability:</strong> {result.investment_suitability}</p>
+      <p className={styles.meta}><strong>Dividends:</strong> {result.dividend_frequency}</p>
     </div>
   );
 }

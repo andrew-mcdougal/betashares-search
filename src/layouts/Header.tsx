@@ -9,7 +9,7 @@ export function Header({ className }: HeaderProps) {
   return (
     <div className={`bg-[white] flex items-center justify-between p-[1em_5vmin] ${className}`}>
       <Logo />
-      <ThemeToggle />
+      {/* <ThemeToggle /> */}
     </div>
   );
 }

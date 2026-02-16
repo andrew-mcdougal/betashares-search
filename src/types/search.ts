@@ -21,7 +21,10 @@ export interface SearchParams {
   searchText: string;
   page: number;
   pageSize: number;
-  orderBy?: string;
+  orderBy?: {
+    field: "symbol" | "display_name" | "fund_size" | "management_fee";
+    direction: "asc" | "desc";
+  };
   filters?: {
     management_approach?: string[];
     fund_size?: {
@@ -35,7 +38,7 @@ export interface SearchParams {
     investment_suitability?: string[];
     categories?: string[];
     dividend_frequency?: string[];
-  }
+  };
 }
 
 export interface SearchState {

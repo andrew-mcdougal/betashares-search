@@ -1,5 +1,10 @@
 import type { SearchParams } from "../../types/search";
-import { type Dispatch, type SetStateAction, type ChangeEvent, useState } from "react";
+import {
+  type Dispatch,
+  type SetStateAction,
+  type ChangeEvent,
+  useState,
+} from "react";
 import { SearchBar } from "../SearchBar/SearchBar";
 import style from "./Filters.module.css";
 
@@ -41,9 +46,9 @@ export function Filters({ className, params, setParams }: FiltersProps) {
     <div className={`sticky-filters ${className}`}>
       <SearchBar params={params} setParams={setParams} />
       {/* Primary filters */}
-      <div className={`dashboard-filters-container`}>
+      <div className={style.filtersContainer}>
         <div className={style.selectContainer}>
-          <label htmlFor="management-approach-filter">Management Type:</label>
+          <label htmlFor="management-approach-filter">Manage Type:</label>
           <select
             className={style.select}
             id="management-approach-filter"
@@ -95,75 +100,125 @@ export function Filters({ className, params, setParams }: FiltersProps) {
         {showAdvanced ? "Hide advanced filters" : "Show advanced filters"}
       </button>
 
-      {showAdvanced && 
-      <div className={`dashboard-filters-container pt-[2em]`}>
+      {showAdvanced && (
+        <div className={`${style.filtersContainer} pt-[2em]`}>
+          <div className={style.sliderContainer}>
+            <label htmlFor="management-fee-slider">
+              Max management fee: {params.filters?.management_fee?.max || 2}%
+            </label>
+            <input
+              type="range"
+              id="management-fee-slider"
+              min={0}
+              max={5}
+              step={0.1}
+              value={params.filters?.management_fee?.max || 2}
+              onChange={(e) => {
+                const value = e.target.value;
+                setParams((prev) => ({
+                  ...prev,
+                  page: 1,
+                  filters: {
+                    ...prev.filters,
+                    management_fee: { min: "0", max: value },
+                  },
+                }));
+              }}
+            />
+          </div>
 
-        <div className={style.sliderContainer}>
-          <label htmlFor="management-fee-slider">
-            Max management fee: {params.filters?.management_fee?.max || 2}%
-          </label>
-          <input
-            type="range"
-            id="management-fee-slider"
-            min={0}
-            max={5}
-            step={0.1}
-            value={params.filters?.management_fee?.max || 2}
+          {/* Investment Suitability */}
+          <div className={style.selectContainer}>
+            <label htmlFor="investment-suitability-filter">
+              Investment Suitability:
+            </label>
+            <select
+              id="investment-suitability-filter"
+              name="investment_suitability"
+              className={style.select}
+              value={params.filters?.investment_suitability?.[0] || ""}
+              onChange={handleSelectChange}
+            >
+              <option value="">All</option>
+              {investmentSuitabilities.map((suit) => (
+                <option key={suit} value={suit}>
+                  {suit}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Dividend Frequency */}
+          <div className={style.selectContainer}>
+            <label htmlFor="dividend-frequency-filter">
+              Dividend Frequency:
+            </label>
+            <select
+              id="dividend-frequency-filter"
+              name="dividend_frequency"
+              className={style.select}
+              value={params.filters?.dividend_frequency?.[0] || ""}
+              onChange={handleSelectChange}
+            >
+              <option value="">All</option>
+              {dividendFrequencies.map((freq) => (
+                <option key={freq} value={freq}>
+                  {freq}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+      )}
+
+      {/* Sorting options */}
+      <div className={style.sortingWrapper}>
+        <div className={style.sortingGroup}>
+          <select
+            id="sort"
+            className={style.select}
+            value={
+              params.orderBy
+                ? `${params.orderBy.field}:${params.orderBy.direction}`
+                : ""
+            }
             onChange={(e) => {
               const value = e.target.value;
+
+              if (!value) {
+                setParams((prev) => ({
+                  ...prev,
+                  page: 1,
+                  orderBy: undefined,
+                }));
+                return;
+              }
+
+              const [field, direction] = value.split(":") as [
+                "symbol" | "display_name" | "fund_size" | "management_fee",
+                "asc" | "desc",
+              ];
+
               setParams((prev) => ({
                 ...prev,
                 page: 1,
-                filters: {
-                  ...prev.filters,
-                  management_fee: { min: "0", max: value },
-                },
+                orderBy: { field, direction },
               }));
             }}
-          />
-        </div>
-
-        {/* Investment Suitability */}
-        <div className={style.selectContainer}>
-          <label htmlFor="investment-suitability-filter">
-            Investment Suitability:
-          </label>
-          <select
-            id="investment-suitability-filter"
-            name="investment_suitability"
-            className={style.select}
-            value={params.filters?.investment_suitability?.[0] || ""}
-            onChange={handleSelectChange}
           >
-            <option value="">All</option>
-            {investmentSuitabilities.map((suit) => (
-              <option key={suit} value={suit}>
-                {suit}
-              </option>
-            ))}
-          </select>
-        </div>
+            <option value="">Default sorting</option>
 
-        {/* Dividend Frequency */}
-        <div className={style.selectContainer}>
-          <label htmlFor="dividend-frequency-filter">Dividend Frequency:</label>
-          <select
-            id="dividend-frequency-filter"
-            name="dividend_frequency"
-            className={style.select}
-            value={params.filters?.dividend_frequency?.[0] || ""}
-            onChange={handleSelectChange}
-          >
-            <option value="">All</option>
-            {dividendFrequencies.map((freq) => (
-              <option key={freq} value={freq}>
-                {freq}
-              </option>
-            ))}
+            <option value="display_name:asc">Name (A–Z)</option>
+            <option value="display_name:desc">Name (Z–A)</option>
+
+            <option value="fund_size:asc">Fund size (Low → High)</option>
+            <option value="fund_size:desc">Fund size (High → Low)</option>
+
+            <option value="management_fee:asc">Fee (Low → High)</option>
+            <option value="management_fee:desc">Fee (High → Low)</option>
           </select>
         </div>
       </div>
-      }
     </div>
   );
 }

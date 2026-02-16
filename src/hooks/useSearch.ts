@@ -21,6 +21,8 @@ export function useSearch(initialParams?: Partial<SearchParams>) {
     searchText: "", // The text the user types
     page: 1, // Current page number for pagination
     pageSize: 35, // Number of results per page
+    filters: {},
+    orderBy: { field: "display_name", direction: "asc" }, // Default ordering
     ...initialParams, // Allow passing custom defaults
   });
 
@@ -53,7 +55,9 @@ export function useSearch(initialParams?: Partial<SearchParams>) {
         search_text: debouncedSearchText,
         from: (params.page - 1) * params.pageSize + 1, // API expects 1-based index
         size: params.pageSize,
-        order_by: params.orderBy,
+        order_by: params.orderBy
+          ? `${params.orderBy.field}.${params.orderBy.direction}`
+          : undefined,
         ...params.filters, // Spread in any filter options
       };
 
@@ -64,7 +68,7 @@ export function useSearch(initialParams?: Partial<SearchParams>) {
       console.log("API response:", JSON.stringify(data.results[0], null, 2));
 
       // Artificial delay
-      await new Promise(resolve => setTimeout(resolve, 500)); // 500ms delay
+      await new Promise((resolve) => setTimeout(resolve, 500)); // 500ms delay
 
       // Update state with results
       setState({
